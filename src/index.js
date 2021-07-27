@@ -4,16 +4,66 @@ import { fetchImages } from './js/connections';
 import photoCardsTemplates from './templates/photoCards.hbs';
 
 const gallery = document.querySelector('.gallery');
+const formSubmit = document.querySelector('#search-form');
+
+console.log(formSubmit);
+
+
+
 
 
 
 let page = 1;
 const imagesPerPage = 40;
-let query = 'dog';
+let currentPage = 0;
+let query = '';
 
-const images = fetchImages({ query, page, imagesPerPage });
+formSubmit.addEventListener('submit', searchImages);
 
-gallery.innerHTML = photoCardsTemplates(images.data.hits);
+
+
+
+async function searchImages(e) {
+  {
+    e.preventDefault();
+    // refs.buttonLoadMore.style.display = 'none';
+
+    page = 1;
+    currentPage = 1;
+
+    query = e.currentTarget.elements.searchQuery.value.trim();
+
+    if (!query) {
+      return;
+    }
+
+    try {
+      const images = await fetchImages({ query, page, imagesPerPage });
+      // if (images.data.hits.length === 0) {
+      //   Notify.failure(
+      //     'Sorry, there are no images matching your search query. Please try again.',
+      //   );
+      //   return;
+      // }
+
+      // numberOfPages = Math.ceil(images.data.totalHits / imagesPerPage);
+
+      gallery.innerHTML = photoCardsTemplates (images.data.hits);
+      // Notify.success(`Hooray! We found ${images.data.totalHits} images.`);
+      // setHeightImage();
+
+      // window.addEventListener('resize', throttle(setHeightImage, 500));
+      // lightbox.refresh();
+      // window.scroll(pageXOffset, 0);
+    } catch (error) {
+      console.log('Something went wrong', error.message);
+    }
+  }
+
+  // if (numberOfPages > 1) {
+  //   refs.buttonLoadMore.style.display = 'block';
+  // }
+}
 
 // let art=[];
 
