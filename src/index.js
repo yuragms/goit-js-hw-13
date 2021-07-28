@@ -54,11 +54,7 @@ async function searchImages(e) {
       gallery.innerHTML = photoCardsTemplates (images.data.hits);
       Notiflix.Notify.success(`Hooray! We found ${images.data.totalHits} images.`);
       lightbox.refresh();
-      // setHeightImage();
-
-      // window.addEventListener('resize', throttle(setHeightImage, 500));
-      
-      // window.scroll(pageXOffset, 0);
+  
     } catch (error) {
       console.log('Something went wrong', error.message);
   }
@@ -93,8 +89,6 @@ async function loadMoreImages (e) {
 if (currentPage === numberOfPages) {
   loadMoreBtn.style.display = 'none';
   Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
-
-
 }
 
 }
