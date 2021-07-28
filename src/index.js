@@ -1,3 +1,6 @@
+
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/fontawesome';
 import './sass/main.scss';
 import { fetchImages } from './js/connections';
 import Notiflix from "notiflix";
