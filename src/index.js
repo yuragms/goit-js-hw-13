@@ -14,7 +14,7 @@ const loadMoreBtn = document.querySelector('#load-more');
 
 
 let page = 1;
-const imagesPerPage = 100;
+const imagesPerPage = 40;
 let currentPage = 0;
 let numberOfPages = 0;
 let query = '';
