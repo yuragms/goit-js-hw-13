@@ -25,6 +25,19 @@ loadMoreBtn.addEventListener('click', loadMoreImages);
 
 const lightbox = new SimpleLightbox('.gallery a', { /* options */ });
 
+function qqq (){  console.log('Tt');}
+
+qqq();
+
+function setHeightImage() {
+  const imageThumb = document.querySelector('#image-thumb');
+  const imageThumbs = document.querySelectorAll('#image-thumb');
+  const imgWidth = Number.parseFloat(getComputedStyle(imageThumb).width);
+  const height = imgWidth * 0.65 + 'px';
+  console.log(height);
+  imageThumbs.forEach(img => (img.style.height = height));
+};
+
 async function searchImages(e) {
   
     e.preventDefault();
@@ -53,6 +66,8 @@ async function searchImages(e) {
       console.log(numberOfPages);
       gallery.innerHTML = photoCardsTemplates (images.data.hits);
       Notiflix.Notify.success(`Hooray! We found ${images.data.totalHits} images.`);
+      
+      setHeightImage();
       lightbox.refresh();
   
     } catch (error) {
@@ -81,6 +96,7 @@ async function loadMoreImages (e) {
     const images = await fetchImages({ query, page, imagesPerPage });
     gallery.insertAdjacentHTML('beforeend', photoCardsTemplates (images.data.hits));
     lightbox.refresh();
+    setHeightImage();
 
   } catch (error) {
     console.log('Something went wrong', error.message);
