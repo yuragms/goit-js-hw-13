@@ -11,7 +11,7 @@ import 'simplelightbox/dist/simple-lightbox.css';
 const gallery = document.querySelector('.gallery');
 const formSubmit = document.querySelector('#search-form');
 const loadMoreBtn = document.querySelector('#load-more');
-
+const searchWrapper = document.querySelector('.search-wrapper');
 
 let page = 1;
 const imagesPerPage = 40;
@@ -92,6 +92,11 @@ if (currentPage === numberOfPages) {
 }
 
 }
+
+window.onload = function () {
+ const a = document.body.style.paddingTop = getComputedStyle(searchWrapper).height;
+  console.log(a);
+};
 
 
 
